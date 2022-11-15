@@ -11,7 +11,6 @@ header{
     text-align: center;
     color: white;
     padding: 25px;
-    height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -75,4 +74,23 @@ label{
 
 #result{
     color: white;
+    background-color: #46cc80;
+}
+
+table{
+    margin-top: 20px;
+    border-collapse: collapse;
+    width: 100%;
+    border: none;
+}
+
+table td, tr, th{
+    border: 1px solid black;
+    padding: 5px;
+    font-weight: bold;
+}
+
+tr:hover{
+    background-color: white;
+    color: #46cc80;
 }

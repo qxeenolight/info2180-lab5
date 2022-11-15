@@ -11,24 +11,49 @@ if ($_SERVER["REQUEST_METHOD"] == "GET"){
   if (isset($_GET['country']) && !empty($_GET['country']) && !isset($_GET['context']) ){
     $filteredCountry = ucwords(trim(filter_var($_GET["country"], FILTER_SANITIZE_STRING)));
     $stmt = $conn->query("SELECT * FROM countries WHERE name LIKE '%$filteredCountry%' ");
-    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    $output = "<ul>";
-    foreach($results as $country){
-      $output .= "<li>".$country["name"]."<br>";
-    }
-    $output.= "</ul>";
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC); ?>
+    <table>
+        <tr> 
+            <th>Name</th>
+            <th>Continent</th>
+            <th>Independence</th>
+            <th>Head of State</th>
+        </tr>
+        <tbody> 
+            <?php foreach ($results as $country): ?>
+              <tr> 
+                  <td><?= $country['name']?></td>
+                  <td><?= $country['continent']?></td>
+                  <td><?= $country['independence_year']?></td>
+                  <td><?= $country['head_of_state']?></td>
+              </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table> <?php  
   }
 
   else{
     $output = "<ul>";
     $stmt = $conn->query("SELECT * FROM countries ");
-    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    foreach($results as $country){
-      $output .= "<li>".$country["name"]."<br>";
-    }
-    $output.= "</ul>";
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);?>
+    <table>
+        <tr> 
+            <th>Name</th>
+            <th>Continent</th>
+            <th>Independence</th>
+            <th>Head of State</th>
+        </tr>
+        <tbody> 
+            <?php foreach ($results as $country): ?>
+              <tr> 
+                  <td><?= $country['name']?></td>
+                  <td><?= $country['continent']?></td>
+                  <td><?= $country['independence_year']?></td>
+                  <td><?= $country['head_of_state']?></td>
+              </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table> <?php 
   }
-
-  echo $output;
 }
 ?>
